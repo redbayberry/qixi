@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/pageA.css">
+	<link rel="stylesheet" href="../css/pageB.css">
+	<link rel="stylesheet" href="../css/pageC.css">
+	<style>
+	.b_background{
+		width:100%;
+		height:100%;
+		background-image:url("http://img.mukewang.com/55ade06f00015a0d14410901.png");
+		background-size:100% 100%;
+		position:absolute;
+	}
+	.b_background_preload{
+		background:url("http://img.mukewang.com/55ade06f00015a0d14410901.png") no-repeat -9999px -9999px;
+	}
+	.lamp_bright{
+		background-image: url("http://img.mukewang.com/55ade0be0001a37914410901.png");
+	}
+	.shop{
+		width:39.5%;
+		height:35.5%;
+		position:absolute;
+		left:29%;
+		top:36.5%;
+	}
+	.door{
+		width:32%;
+		height:68%;
+		position:absolute;
+		left:58.5%;
+		top:32%;
+		overflow: hidden;
+	}
+	.door_left,
+	.door_right{
+		width:50%;
+		height:100%;
+		position:absolute;
+	}
+	/*使用简写门会有缝，缩小时，门合不到一起*/
+	.door_left{
+		left:0%;
+		background: url('http://img.mukewang.com/55ade1140001050d00910231.png') no-repeat 0 0/100% 100%;
+	}
+	.door_right{
+		left:50%;
+		background: url('http://img.mukewang.com/55ade12100019f5b00910231.png') no-repeat 0 0/100% 100%;
+	}
+	/*.door_left {
+    left: 0%;
+    background: url(http://img.mukewang.com/55ade1140001050d00910231.png);
+    background-size: 100% 100%;
+}
+.door_right {
+    left: 50%;
+    background: url(http://img.mukewang.com/55ade12100019f5b00910231.png);
+    background-size: 100% 100%;
+}*/
+.boyOriginal{
+	 background-position: -150px -0px;
+}
+
+	</style>
+
+</head>
+<body>
+<div id="content">
+	<ul class="content-wrap">
+		<!-- 页面1 -->
+		<li>
+			<div class="a_background">
+				<div class="a_background_top"></div>
+				<div class="a_background_middle"></div>
+				<div class="a_background_bottom"></div>
+			</div>
+			<div class="cloudArea">
+				<div class="cloud cloud1"></div>
+				<div class="cloud cloud2"></div>
+			</div>
+			<div class="sun"></div>
+		</li>
+		<!-- 页面2 -->
+		<li>
+			<div class="b_background"></div>
+			<div class="b_background_preload"></div>
+			<div class="shop">
+				<div class="door">
+					<div class="door_left"></div>
+					<div class="door_right"></div>					
+				</div>
+				<div class="lamp"></div>			
+			</div>
+			<div class="bird"></div>
+		</li>
+		<!-- 页面3 -->
+		<li>
+			<div class="c_background">
+				<div class="c_background_top"></div>
+				<div class="c_background_middle"></div>
+				<div class="c_background_bottom"></div>
+			</div>
+			<div class="girl"></div>
+			<div class="bridge_bottom">
+				<div class="water">
+					<div id="water1" class="water_1"></div>
+					<div id="water2" class="water_2"></div>
+					<div id="water3" class="water_3"></div>
+					<div id="water4" class="water_4"></div>
+				</div>
+			</div>
+			<ul class="stars">
+				<li class="star1"></li>
+				<li class="star2"></li>
+				<li class="star3"></li>
+				<li class="star4"></li>
+				<li class="star5"></li>
+				<li class="star6"></li>
+			</ul>
+			<div class="logo"></div>
+		</li>
+	</ul>
+	<div id="snowflake"></div>
+	<div class="button">
+		<button>开门</button>
+		<button>关门</button>
+	</div>
+	<div id="boy" class="charactor"></div>
+</div>
+
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="http://img.mukewang.com/down/55ac9ea30001ace700000000.js"></script>
+<script src="../js/swipe.js"></script>
+<script src="../js/boywalk.js"></script>
+<script src="../js/qixi.js"></script>=-<script>
+/*$(function(){
+	var snowflakeURl = [
+        'http://img.mukewang.com/55adde120001d34e00410041.png',
+        'http://img.mukewang.com/55adde2a0001a91d00410041.png',
+        'http://img.mukewang.com/55adde5500013b2500400041.png',
+        'http://img.mukewang.com/55adde62000161c100410041.png',
+        'http://img.mukewang.com/55adde7f0001433000410041.png',
+        'http://img.mukewang.com/55addee7000117b500400041.png'
+    ];
+function snowflake(){
+    var $flakeContainer = $('#snowflake');
+
+    function getImagesName(){
+    	return snowflakeURl[Math.floor(Math.random()*6)];		
+    }
+    function createSnowBox(){
+    	var url = getImagesName();
+    	return $('<div class="snowbox"/>').css({
+    		'width':41,
+    		'height':41,
+    		'position':'absolute',
+    		'backgroundSize':'cover',
+    		'zIndex':10000,
+    		'top':'-41px',
+    		'backgroundImage':'url('+url+')'
+    	}).addClass('snowRoll'); 
+    }
+    setInterval(function(){
+    	var startPositionLeft = Math.random()*visualWidth-100,
+    	startOpacity = 1,
+    	endPositionTop = visualHeight-40,
+    	endPositionLeft = startPositionLeft - 100 + Math.random() * 500,
+        duration = visualHeight * 10 + Math.random() * 5000;
+
+            // 随机透明度，不小于0.5
+            var randomStart = Math.random();
+            randomStart = randomStart < 0.5 ? startOpacity : randomStart;
+            var $flake = createSnowBox();
+            $flake.css({
+            	left:startPositionLeft,
+            	opacity:randomStart
+            }) ;
+            $flakeContainer.append($flake);
+            $flake.transition({
+            	top:endPositionTop,
+            	left:endPositionLeft,
+            	opacity:0.7
+            },duration,'ease-out',function(){
+            	$(this).remove();
+            });
+    },200);
+}
+function startRun(){
+	boy.walkTo(2000,0.5).then(function(){
+		boy.stopWalk();
+	})
+	.then(function(){
+		return openDoor();
+	})
+	.then(function(){
+		lamp.bright();
+	})
+	.then(function(){
+		return boy.toShop(2000);
+	})
+	.then(function(){
+		return boy.takeflower();
+	})
+	.then(function(){
+		bird.fly();
+	})
+	.then(function(){
+		return boy.outShop(2000);
+	})
+	.then(function(){
+		return shutDoor();
+	})
+	.then(function(){
+		lamp.dark();
+	});
+}
+/*	 $('button:first').click(function(){
+	 	openDoor().then(function(){
+	 		lamp.bright();
+	 	});
+	 });
+	 $('button:last').click(function(){
+	 	shutDoor().then(function(){
+	 		lamp.dark();
+	 	});
+	 });
+*/	
+/*var audioConfig = {
+	enable:true,
+	playURl:'http://www.imooc.com/upload/media/happy.wav',
+	cycleURl:'http://www.imooc.com/upload/media/circulation.wav'
+};
+function Html5Audio(url,isloop){
+	var audio = new Audio(url);
+	audio.autoplay = true;
+	audio.loop = isloop ||false;
+	audio.play();
+	return{
+		end:function(){
+			audio.addEventListener('ended',function(){
+				callback();
+			},false);
+		}
+	}
+}
+	$('button:first').click(function(){
+		var audio1 = Html5Audio(audioConfig.playURl);
+		audio1.end(function(){
+			Html5Audio(audioConfig.cycleURl,true);
+		});
+		boy.walkTo(2000,0.15).then(function(){
+			return boy.walkTo(1500,0.25,(bridgeY-girl.getHeight())/visualHeight);
+		}).then(function(){
+			var proportionX = (girl.getOffset().left-boy.getWidth()+girl.getWidth()/5)/visualWidth;
+			return boy.walkTo(1500,proportionX);
+		}).then(function(){
+			boy.resetOriginal();
+		}).then(function(){
+			setTimeout(function(){
+				girl.rotate();
+				boy.rotate(function(){
+					logo.run();
+					snowflake();
+				});
+			},1000);
+		});
+	});
+
+	
+});*/
+</script>
+</body>
+</html>

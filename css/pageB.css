@@ -1,0 +1,41 @@
+.bird{
+	min-width: 91px;
+    min-height: 71px;
+	position:absolute;
+	background:url(http://img.mukewang.com/55ade1700001b38302730071.png) -182px 0px no-repeat;
+	z-index:10;
+	top:10%;
+	right:0px;
+}
+.birdfly{
+	-webkit-animation:bird-slow 400ms steps(1, start) infinite;
+	-moz-animation:bird-slow 400ms steps(1, start) infinite;
+}
+@-webkit-keyframes bird-slow{
+	0% {
+    background-position: -182px 0px;
+	}
+	50% {
+	    background-position: 0px 0px;
+	}
+	75% {
+	    background-position: -91px 0px;
+	}
+	100% {
+	    background-position: -182px 0px;
+	}
+}
+@-moz-keyframes bird-slow{
+	0% {
+    background-position: -182px 0px;
+	}
+	50% {
+	    background-position: 0px 0px;
+	}
+	75% {
+	    background-position: -91px 0px;
+	}
+	100% {
+	    background-position: -182px 0px;
+	}
+}

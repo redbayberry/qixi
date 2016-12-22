@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+<div id="result"></div>
+<script src="../js/jquery-1.11.3.js"></script>
+	
+<script>
+	 $(document).ready(function() {  
+	    $.ajax({  
+	        //请求方式为get  
+	        type:"GET",  
+	        //json文件位置  
+	        url:"data.json",  
+	        //返回数据格式为json  
+	        dataType: "json",  
+	        //请求成功完成后要执行的方法  
+	        success: function(data){  
+	            //使用$.each方法遍历返回的数据date,插入到id为#result中  
+	             
+	               dataResponse(null,data.data); 
+	               // console.log(item);
+	            
+	        }  
+    });
+	function dataResponse(elem,data){
+		if(elem === null){
+			elem ='#result';
+		}
+		 var ul=$('<ul></ul>');
+		$.each(data,function(i,item){
+			var list = $('<li>'+item.fName+'</li>');
+			ul.append(list);
+			if(item.childrenItem!=={}){
+				dataResponse(list,item.childrenItem);
+			}
+					
+		});
+		console.log(ul);
+		$(elem).append(ul);
+
+	}
+});  
+</script>
+</body>
+</html>
